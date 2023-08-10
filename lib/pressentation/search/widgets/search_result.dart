@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix/application/search/search_bloc.dart';
 import 'package:netflix/pressentation/search/widgets/title.dart';
-
-const imageUrl =
-    "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTYyaCMGIDqOrnfFiXD5Wj3--gOX6aYjvtE-DKc3ym6Wyr_UQqH";
 
 class SearchResult extends StatelessWidget {
   const SearchResult({super.key});
@@ -16,15 +15,20 @@ class SearchResult extends StatelessWidget {
           title: 'Movies & TV',
         ),
         Expanded(
-          child: GridView.count(
-            shrinkWrap: true,
-            crossAxisCount: 3,
-            mainAxisSpacing: 8,
-            crossAxisSpacing: 8,
-            childAspectRatio: 1 / 1.6,
-            children: List.generate(20, (index) {
-              return const MainCard();
-            }),
+          child: BlocBuilder<SearchBloc, SearchState>(
+            builder: (context, state) {
+              return GridView.count(
+                shrinkWrap: true,
+                crossAxisCount: 3,
+                mainAxisSpacing: 8,
+                crossAxisSpacing: 8,
+                childAspectRatio: 1 / 1.6,
+                children: List.generate(state.searchResultList.length, (index) {
+                  final movie = state.searchResultList[index];
+                  return MainCard(imageUrl: movie.posterImageUrl);
+                }),
+              );
+            },
           ),
         )
       ],
@@ -33,13 +37,17 @@ class SearchResult extends StatelessWidget {
 }
 
 class MainCard extends StatelessWidget {
-  const MainCard({super.key});
+  final String imageUrl;
+  const MainCard({
+    super.key,
+    required this.imageUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          image: const DecorationImage(
+          image: DecorationImage(
             image: NetworkImage(
               imageUrl,
             ),

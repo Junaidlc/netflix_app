@@ -10,21 +10,21 @@ class EveryonesWatching extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         kHeight,
-         Text(
+        Text(
           "Friends",
           style: kTextStyleBold24,
         ),
         kHeight,
-         Text(
+        Text(
           "Follow the lives of six reckless adults living in Manhattan, as they indulge in adventures which make their lives both troublesome and happening.",
           style: kTextStyleRegularGrey14,
         ),
         kHeight50,
-         VideoWidget(
+        VideoWidget(
           videoImage: kTempNewAndHot1,
         ),
         kHeight,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:netflix/core/colors/colors.dart';
+import 'package:netflix/core/colors.dart';
 import 'package:netflix/core/constants.dart';
 import 'package:netflix/pressentation/home/widget/custom_button_widget.dart';
 import 'package:netflix/pressentation/widgets/video_widget.dart';
@@ -41,7 +41,7 @@ class ComingSoonWidget extends StatelessWidget {
         SizedBox(
           width: size.width - 50,
           height: 500,
-          child:  const Column(
+          child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               VideoWidget(videoImage: kTempNewAndHot),
@@ -49,7 +49,7 @@ class ComingSoonWidget extends StatelessWidget {
                 padding: EdgeInsets.only(top: 30),
                 child: Row(
                   children: [
-                     Text(
+                    Text(
                       "Indiana Jonas",
                       style: TextStyle(
                         letterSpacing: -4,
@@ -79,12 +79,12 @@ class ComingSoonWidget extends StatelessWidget {
                   ],
                 ),
               ),
-               Text(
+              Text(
                 "Coming on Friday",
                 style: kTextStyleBoldGrey16,
               ),
               kHeight,
-               SizedBox(
+              SizedBox(
                 width: double.infinity,
                 height: 25,
                 child: Row(
@@ -107,11 +107,11 @@ class ComingSoonWidget extends StatelessWidget {
                   ],
                 ),
               ),
-               Text(
+              Text(
                 "Indiana Jonas",
                 style: kTextStyleBold24,
               ),
-               Text(
+              Text(
                 "Landing the lead in the school musical is a dream come true for Jod, until the pressure uinto e failspinsends her contidence and her relationship",
                 style: kTextStyleRegularGrey14,
               ),

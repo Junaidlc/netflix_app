@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:netflix/core/colors/colors.dart';
+import 'package:netflix/core/colors.dart';
 
 const kWidth = SizedBox(width: 10);
 const kWidth20 = SizedBox(width: 20);
@@ -17,18 +17,6 @@ const kHeight50 = SizedBox(height: 50);
 
 final BorderRadius kRadius10 = BorderRadius.circular(10);
 final BorderRadius kRadius30 = BorderRadius.circular(30);
-
-// NetWork Image
-
-const kMainImage =
-    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/2y48XTa483LRFIb5fDKOwr8DHWz.jpg";
-
-// Temp
-//
-const kTempNewAndHot1 =
-    "https://www.themoviedb.org/t/p/w710_and_h400_multi_faces/sbtJ1SxJ1CIvttQqhGbUZcDpSqC.jpg";
-const kTempNewAndHot =
-    "https://www.themoviedb.org/t/p/w710_and_h400_multi_faces/35z8hWuzfFUZQaYog8E9LsXW3iI.jpg";
 
 // Text Style
 
@@ -85,3 +73,19 @@ const kTextStyleRegularGrey14 = TextStyle(
   fontWeight: FontWeight.normal,
   color: kGreyColor,
 );
+
+// NetWork Image
+
+const kMainImage =
+    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/2y48XTa483LRFIb5fDKOwr8DHWz.jpg";
+
+// Temp
+//
+const kTempNewAndHot1 =
+    "https://www.themoviedb.org/t/p/w710_and_h400_multi_faces/sbtJ1SxJ1CIvttQqhGbUZcDpSqC.jpg";
+const kTempNewAndHot =
+    "https://www.themoviedb.org/t/p/w710_and_h400_multi_faces/35z8hWuzfFUZQaYog8E9LsXW3iI.jpg";
+
+//
+
+const imageAppendUrl = "https://image.tmdb.org/t/p/w500";
