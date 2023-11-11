@@ -5,9 +5,10 @@ import 'package:netflix/pressentation/widgets/main_tiltle.dart';
 class MainTileCard extends StatelessWidget {
   const MainTileCard({
     super.key,
-    required this.title,
+    required this.title, required this.posterList,
   });
   final String title;
+  final List<String> posterList;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +26,8 @@ class MainTileCard extends StatelessWidget {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: List.generate(
-              10,
-              (index) => const MainCard(),
+              posterList.length,
+              (index) =>  MainCard(imageUrl: posterList[index]),
             ),
           ),
         ),

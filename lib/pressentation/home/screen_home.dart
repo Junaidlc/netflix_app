@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix/application/home/home_bloc.dart';
 import 'package:netflix/core/colors.dart';
 import 'package:netflix/core/constants.dart';
 import 'package:netflix/pressentation/home/widget/background_card.dart';
@@ -13,6 +15,9 @@ class ScreenHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      BlocProvider.of<HomeBloc>(context).add(const GetHomeScreenData());
+    });
     return Scaffold(
         body: ValueListenableBuilder(
       valueListenable: scrollNotifier,
@@ -29,23 +34,72 @@ class ScreenHome extends StatelessWidget {
           },
           child: Stack(
             children: [
-              ListView(
-                children: const [
-                  BackgroundCard(),
-                  MainTileCard(
-                    title: "Released in Past Year",
-                  ),
-                  MainTileCard(
-                    title: "Trending Now",
-                  ),
-                  NumberTileCard(),
-                  MainTileCard(
-                    title: "Tense Dramas",
-                  ),
-                  MainTileCard(
-                    title: "South Indian Cinema",
-                  ),
-                ],
+              BlocBuilder<HomeBloc, HomeState>(
+                builder: (context, state) {
+                  if (state.isLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                      ),
+                    );
+                  } else if (state.hasError) {
+                    return const Center(
+                      child: Text(
+                        "Error While Getting Data",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    );
+                  }
+                  // released past yeat
+                  final _releasePastYear = state.pastYearMovieList.map((m) {
+                    return '$imageAppendUrl${m.posterPath}';
+                  }).toList();
+                  // trending now
+                  final _tranding = state.trandingMovieList.map((m) {
+                    return '$imageAppendUrl${m.posterPath}';
+                  }).toList();
+                  // tense drama
+                  final _tenseDrama = state.tenseDramaMovieList.map((m) {
+                    return '$imageAppendUrl${m.posterPath}';
+                  }).toList();
+                  // south indian
+                  final _southIndian = state.southIndiaMovieList.map((m) {
+                    return '$imageAppendUrl${m.posterPath}';
+                  }).toList();
+                  _southIndian.shuffle();
+                  // top 10 tv shows
+                  final _top10tvShows = state.trandingTVList.map((t) {
+                    return '$imageAppendUrl${t.posterPath}';
+                  }).toList();
+                  _top10tvShows.shuffle();
+                  // List View
+                  return ListView(
+                    children: [
+                      BackgroundCard(),
+                      MainTileCard(
+                        title: "Released in Past Year",
+                        posterList: _releasePastYear,
+                      ),
+                      MainTileCard(
+                        title: "Trending Now",
+                        posterList: _tranding,
+                      ),
+                      NumberTileCard(
+                        postersList: _top10tvShows.sublist(0, 10),
+                      ),
+                      MainTileCard(
+                        title: "Tense Dramas",
+                        posterList: _tenseDrama,
+                      ),
+                      MainTileCard(
+                        title: "South Indian Cinema",
+                        posterList: _southIndian,
+                      ),
+                    ],
+                  );
+                },
               ),
               scrollNotifier.value == true
                   ? AnimatedContainer(

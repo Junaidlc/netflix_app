@@ -4,31 +4,39 @@ import 'package:netflix/pressentation/home/widget/custom_button_widget.dart';
 import 'package:netflix/pressentation/widgets/video_widget.dart';
 
 class EveryonesWatching extends StatelessWidget {
+  final String posterPath;
+  final String movieName;
+  final String description;
   const EveryonesWatching({
     super.key,
+    required this.posterPath,
+    required this.movieName,
+    required this.description,
   });
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return  Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         kHeight,
-        Text(
-          "Friends",
+         Text(
+          movieName,
           style: kTextStyleBold24,
         ),
         kHeight,
-        Text(
-          "Follow the lives of six reckless adults living in Manhattan, as they indulge in adventures which make their lives both troublesome and happening.",
+         Text(
+          description,
+          maxLines: 4,
+          overflow: TextOverflow.ellipsis,
           style: kTextStyleRegularGrey14,
         ),
         kHeight50,
         VideoWidget(
-          videoImage: kTempNewAndHot1,
+          url: posterPath,
         ),
         kHeight,
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             CustomButtonWidget(

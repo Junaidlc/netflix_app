@@ -17,6 +17,10 @@ class ScreenDownloads extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      BlocProvider.of<DownloadsBloc>(context)
+          .add(const DownloadsEvent.getDownloadsImages());
+    });
     return Scaffold(
         appBar: const PreferredSize(
           preferredSize: Size.fromHeight(50),
@@ -38,12 +42,6 @@ class Section2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-    //   BlocProvider.of<DownloadsBloc>(context)
-    //       .add(DownloadsEvent.getDownloadsImages());
-    // });
-    BlocProvider.of<DownloadsBloc>(context)
-        .add(const DownloadsEvent.getDownloadsImages());
     final Size size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -58,7 +56,7 @@ class Section2 extends StatelessWidget {
           textAlign: TextAlign.center,
           style: kTextStyleBoldGrey16,
         ),
-        kHeight40,
+        // kHeight20,
         BlocBuilder<DownloadsBloc, DownloadsState>(
           builder: (context, state) {
             return SizedBox(
@@ -105,7 +103,7 @@ class Section2 extends StatelessWidget {
             );
           },
         ),
-        kHeight40,
+        // kHeight20,
       ],
     );
   }

@@ -7,8 +7,10 @@ class NumberCard extends StatelessWidget {
   const NumberCard({
     super.key,
     required this.index,
+    required this.imageUrl,
   });
   final int index;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +26,10 @@ class NumberCard extends StatelessWidget {
               height: 250,
               decoration: BoxDecoration(
                 borderRadius: kRadius10,
-                image: const DecorationImage(
+                image:  DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(
-                    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
+                    imageUrl,
                   ),
                 ),
               ),
